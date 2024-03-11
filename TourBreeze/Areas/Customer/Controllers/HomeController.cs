@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TourBreeze.Models;
 
-namespace TourBreeze.Controllers
+namespace TourBreeze.Areas.Customer.Controllers
 {
     public class HomeController : Controller
     {
