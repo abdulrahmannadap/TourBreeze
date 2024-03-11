@@ -2,7 +2,7 @@
 using TourBreeze.Models;
 using TourBreeze.Server.Service.Interface;
 
-namespace TourBreeze.Controllers
+namespace TourBreeze.Areas.Admin.Controllers
 {
     public class ProductsController : Controller
     {
@@ -79,7 +79,7 @@ namespace TourBreeze.Controllers
                     //product.ImageUrl = @"\images\products\" + newFileName;
                     product.ImageUrl = Path.Combine(@"\images\products\", newFileName);
 
-                  
+
                 }
 
 
@@ -90,7 +90,7 @@ namespace TourBreeze.Controllers
                 }
                 else
                 {
-                    
+
                     _repo.Edit(product);
 
                     _repo.Save();
@@ -114,13 +114,13 @@ namespace TourBreeze.Controllers
             {
                 string webRootpath = _webHost.WebRootPath;
 
-               
+
                 var comingFormDeleteP = _repo.Get(id);
                 _repo.Delete(comingFormDeleteP);
 
                 if (!string.IsNullOrEmpty(comingFormDeleteP.ImageUrl))
                 {
-                    
+
                     string oldImagePath = Path.Combine(webRootpath, comingFormDeleteP.ImageUrl.TrimStart('\\'));
                     if (System.IO.File.Exists(oldImagePath))
                     {
