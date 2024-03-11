@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<Product>
+
+    <div>
+        <a asp-controller="Products" asp-action="ProductUpsert" class="btn btn-primary">Add Product</a>
+    </div>
+    <table class="table table-bordered table-hover table-responsive-sm ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Image</th>
+                <th>Product DateTime</th>
+                <th>Product GoingUrl</th>
+                <th>Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var product in Model)
+            {
+                <tr >
+                    <td></td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                <td>
+                    <img src="@product.ImageUrl" alt="No Image Found" height="100" width="100" />
+                </td>
+                    <td>@product.DateTime</td>
+                    <td>@product.GoingUrl</td>
+                
+                <td>
+                    <a asp-controller="Products" asp-action="ProductUpsert" class="btn btn-outline-warning text-uppercase" asp-route-id="@product.Id"> Edit</a>
+                    <a onclick="return confirmDelete()" class="btn btn-outline-danger text-uppercase" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id"> Delete</a>
+                </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+@section Scripts {
+    <script>
+        function confirmDelete() {
+            return confirm("Are You Want To Delete This ?")
+        }
+    </script>
+}

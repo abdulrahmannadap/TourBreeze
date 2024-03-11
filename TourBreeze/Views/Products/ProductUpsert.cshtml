@@ -1,0 +1,87 @@
+﻿@model Product
+
+<div class="row">
+    <div class="col-8">
+
+        <form asp-controller="Products" asp-action="ProductUpsert" method="post" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mt-4">
+                <label asp-for="Name" class="form form-label text-uppercase"></label>
+                <input type="text" asp-for="Name" placeholder=" Enter Product Name " class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <label asp-for="Description" class="form form-label text-uppercase"></label>
+                <input type="text" asp-for="Description"  placeholder=" Enter  Product Description Name " class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <label asp-for="DateTime" class="form form-label text-uppercase"></label>
+                <input type="date" asp-for="DateTime" placeholder=" Enter Select Date " class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <label asp-for="GoingUrl" class="form form-label"> </label>
+                <input type="text" asp-for="GoingUrl" placeholder=" Enter Going Url " class="form-control" />
+                <span asp-validation-for="GoingUrl" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <label asp-for="State" class="form form-label text-uppercase"></label>
+                <input type="text" asp-for="State" placeholder=" Enter State Name " class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <label asp-for="District" class="form form-label text-uppercase"></label>
+                <input type="text" asp-for="District" placeholder=" Enter District Name " class="form-control" />
+                <span asp-validation-for="District" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <label asp-for="City" class="form form-label text-uppercase"></label>
+                <input type="text" asp-for="City" placeholder=" Enter City Name " class="form-control" />
+
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <label asp-for="ImageUrl" class="form form-label"></label>
+                <input type="file" asp-for="ImageUrl" class="form-control" name="file" />
+                @* <span asp-validation-for="ImageUrl" class="text-danger"></span> *@
+            </div>
+
+            <div class="mt-4">
+                <input type="submit" class="btn btn-outline-success mt-3 text-uppercase mx-4 " value=@(Model.Id==0 ? "ADD" : "EDIT") />
+                <a asp-controller="Products" asp-action="ProductList" class="btn btn-outline-warning mt-3 text-uppercase">Cancelled</a>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    Existing Image
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="card-img">
+                    <img src="@Model.ImageUrl" height="300" width="300" alt="No Image Found" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
