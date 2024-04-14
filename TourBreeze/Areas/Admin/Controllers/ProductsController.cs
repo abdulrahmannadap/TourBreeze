@@ -4,6 +4,7 @@ using TourBreeze.Server.Service.Interface;
 
 namespace TourBreeze.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProductsController : Controller
     {
         #region Dependanceis And Cunstructor
