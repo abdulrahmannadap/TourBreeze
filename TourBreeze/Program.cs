@@ -1,26 +1,23 @@
-using TourBreeze;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TourBreeze.Data;
-using TourBreeze.Areas.Identity.Data;
+using TourBreeze;
+using TourBreeze.Server.Data;
+using TourBreeze.Server.Service.Implimentation;
+using TourBreeze.Server.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("TourBreezeContextConnection") ?? throw new InvalidOperationException("Connection string 'TourBreezeContextConnection' not found.");
 
-builder.Services.AddDbContext<TourBreezeContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<TourBreezeUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<TourBreezeContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-ConfigurationService.RagistrationDependancies(builder.Services, builder.Configuration);
-
-//builder.Services.AddDbContext<ApplicationDbContext>(option =>
-//{
-//    option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
-//});
-//builder.Services.AddScoped<IProductRepo,ProductRepo>();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+});
+builder.Services.AddScoped<IProductRepo,ProductRepo>();
+builder.Services.AddScoped<ICountriesRepo,CountriesRepo>();
+//ConfigurationService.RagistrationDependancies(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 

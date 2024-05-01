@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TourBreeze.Server.Data;
 using TourBreeze.Server.Service.Interface;
 
 namespace TourBreeze.Server.Service.Implimentation
@@ -41,14 +44,33 @@ namespace TourBreeze.Server.Service.Implimentation
             return _context.Set<T>().Find(id);
         }
 
-        public T Get(Expression<Func<T, bool>> felter)
+        public T Get(Expression<Func<T, bool>> felter, string? includeProp = null)
         {
-           return _context.Set<T>().FirstOrDefault(felter);
+            IQueryable<T> query = _context.Set<T>();
+            if (!string.IsNullOrEmpty(includeProp))
+            {
+                foreach (var includeProps in includeProp.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            return query.FirstOrDefault(felter);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProp = null)
         {
-            return _context.Set<T>().ToList();
+            IQueryable<T> query = _context.Set<T>();
+            if(!string.IsNullOrEmpty(includeProp))
+            {
+                foreach(var includeProps in includeProp.Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries))
+                {
+                   query = query.Include(includeProp);
+                }
+            }
+
+            return query.ToList();
         }
+
+       
     }
 }

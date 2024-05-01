@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TourBreeze.Models;
 using TourBreeze.Server.Service.Interface;
 
@@ -9,18 +10,20 @@ namespace TourBreeze.Areas.Admin.Controllers
     {
         #region Dependanceis And Cunstructor
         private readonly IProductRepo _repo;
+        private readonly ICountriesRepo _countorysRepo;
         private readonly IWebHostEnvironment _webHost;
-        public ProductsController(IProductRepo repo, IWebHostEnvironment webHost)
+        public ProductsController(IProductRepo repo, IWebHostEnvironment webHost, ICountriesRepo countorysRepo)
         {
             _repo = repo;
             _webHost = webHost;
+            _countorysRepo = countorysRepo;
         }
         #endregion
 
         #region Product List Method
         public IActionResult ProductList()
         {
-            var productDbList = _repo.GetAll().ToList();
+            var productDbList = _repo.GetAll("Country").ToList();
 
             return View(productDbList);
         }
@@ -30,7 +33,9 @@ namespace TourBreeze.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult ProductUpsert(int? id)
         {
-
+            IEnumerable<Countrie> countries = _countorysRepo.GetAll();
+            IEnumerable<SelectListGroup> selectListItem = countries.Select(c=>new SelectListGroup() { Name=countries.ToString()} );
+            ViewBag.SelectListItem = selectListItem;
             if (id == null || id == 0)
             {
 
@@ -93,7 +98,6 @@ namespace TourBreeze.Areas.Admin.Controllers
                 {
 
                     _repo.Edit(product);
-
                     _repo.Save();
                 }
 

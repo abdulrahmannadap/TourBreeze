@@ -1,7 +1,7 @@
 ﻿using TourBreeze.Server.Service.Implimentation;
 using TourBreeze.Server.Service.Interface;
-using TourBreeze.Server;
 using Microsoft.EntityFrameworkCore;
+using TourBreeze.Server.Data;
 
 namespace TourBreeze
 {

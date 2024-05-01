@@ -18,6 +18,10 @@
                 <th>Product Image</th>
                 <th>Product DateTime</th>
                 <th>Product GoingUrl</th>
+                <th>Cuntorys</th>
+                <th>States</th>
+                <th>Citys</th>
+                <th>PinCodes</th>
                 <th>Action</th>
 
 
@@ -35,6 +39,10 @@
                 </td>
                     <td>@product.DateTime</td>
                     <td>@product.GoingUrl</td>
+                <td>@product.Country.Countries</td>
+                <td>@product.Country.States</td>
+                <td>@product.Country.Citys</td>
+                <td>@product.Country.PinCodes</td>
                 
                 <td>
                     <a asp-controller="Products" asp-action="ProductUpsert" class="btn btn-outline-warning text-uppercase" asp-route-id="@product.Id"> Edit</a>

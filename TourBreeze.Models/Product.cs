@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TourBreeze.Models
 {
@@ -7,23 +8,20 @@ namespace TourBreeze.Models
     {
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
         [ValidateNever]
         public string? ImageUrl { get; set; }
-        //public double LiksCount { get; set; }
         [Required]
         public DateTime DateTime { get; set; }
         [Required]
-        public string GoingUrl { get; set; }
-        [Required]
-        public string State { get; set; }
-        [Required]
-        public string District { get; set; }
-        [Required]
-        public string City { get; set; }
+        public string GoingUrl { get; set; } = string.Empty;
 
 
+
+        public Countrie Country { get; set; } // Navigation property
+        [ForeignKey(nameof(Country))] // Can also reference the navigation property
+        public int CountryId { get; set; }
     }
 }
