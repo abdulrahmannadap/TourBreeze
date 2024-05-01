@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Countrie>
-@{
+@* @{
     ViewData["Title"] = "Index";
-    // Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} *@
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-area="Admin" asp-controller="Cointries" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.PinCodes)
             </td>
             <td>
-                    <a asp-area="Admin" asp-controller="Countries" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-area="Admin" asp-controller="Countries" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-area="Admin" asp-controller="Countries" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-area="Admin" asp-controller="Cointries" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-area="Admin" asp-controller="Cointries" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-area="Admin" asp-controller="Cointries" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

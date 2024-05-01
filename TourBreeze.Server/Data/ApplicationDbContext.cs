@@ -13,10 +13,10 @@ namespace TourBreeze.Server.Data
         public DbSet<Countrie> Countries { get; set; }
 
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Product>().ToTable("ProductTable");
-        //    modelBuilder.Entity<Product>().ToTable("CountryTable");
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().ToTable("ProductTable");
+            modelBuilder.Entity<Product>().ToTable("CountrieTable");
+        }
     }
 }

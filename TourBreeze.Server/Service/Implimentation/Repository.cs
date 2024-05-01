@@ -64,7 +64,7 @@ namespace TourBreeze.Server.Service.Implimentation
             {
                 foreach(var includeProps in includeProp.Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries))
                 {
-                   query = query.Include(includeProp);
+                   query = query.Include(includeProps);
                 }
             }
 

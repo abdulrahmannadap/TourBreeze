@@ -20,8 +20,8 @@ namespace TourBreeze.Models
 
 
 
-        public Countrie Country { get; set; } // Navigation property
-        [ForeignKey(nameof(Country))] // Can also reference the navigation property
-        public int CountryId { get; set; }
+        public Countrie Countrie { get; set; } // Navigation property
+        [ForeignKey(nameof(Countrie))] // Can also reference the navigation property
+        public int CountrieId { get; set; }
     }
 }

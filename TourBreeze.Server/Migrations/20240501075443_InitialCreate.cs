@@ -28,7 +28,7 @@ namespace TourBreeze.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CountryTable",
+                name: "CountrieTable",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -38,30 +38,30 @@ namespace TourBreeze.Server.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GoingUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: false)
+                    CountrieId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CountryTable", x => x.Id);
+                    table.PrimaryKey("PK_CountrieTable", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CountryTable_Countries_CountryId",
-                        column: x => x.CountryId,
+                        name: "FK_CountrieTable_Countries_CountrieId",
+                        column: x => x.CountrieId,
                         principalTable: "Countries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CountryTable_CountryId",
-                table: "CountryTable",
-                column: "CountryId");
+                name: "IX_CountrieTable_CountrieId",
+                table: "CountrieTable",
+                column: "CountrieId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CountryTable");
+                name: "CountrieTable");
 
             migrationBuilder.DropTable(
                 name: "Countries");

@@ -59,7 +59,7 @@ namespace TourBreeze.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CountryId")
+                    b.Property<int>("CountrieId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateTime")
@@ -82,20 +82,20 @@ namespace TourBreeze.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
+                    b.HasIndex("CountrieId");
 
-                    b.ToTable("CountryTable", (string)null);
+                    b.ToTable("CountrieTable", (string)null);
                 });
 
             modelBuilder.Entity("TourBreeze.Models.Product", b =>
                 {
-                    b.HasOne("TourBreeze.Models.Countrie", "Country")
+                    b.HasOne("TourBreeze.Models.Countrie", "Countrie")
                         .WithMany()
-                        .HasForeignKey("CountryId")
+                        .HasForeignKey("CountrieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Country");
+                    b.Navigation("Countrie");
                 });
 #pragma warning restore 612, 618
         }

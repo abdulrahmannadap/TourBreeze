@@ -23,7 +23,7 @@ namespace TourBreeze.Areas.Admin.Controllers
         #region Product List Method
         public IActionResult ProductList()
         {
-            var productDbList = _repo.GetAll("Country").ToList();
+            var productDbList = _repo.GetAll("Countrie").ToList();
 
             return View(productDbList);
         }
