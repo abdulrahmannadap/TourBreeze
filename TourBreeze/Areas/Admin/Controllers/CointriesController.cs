@@ -20,6 +20,7 @@ namespace TourBreeze.Areas.Admin.Controllers
         // GET: CointriesController
         public ActionResult Index()
         {
+
            var listFromDb = _countriesRepo.GetAll().ToList();
             return View(listFromDb);
         }
